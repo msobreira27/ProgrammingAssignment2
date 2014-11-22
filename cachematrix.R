@@ -58,20 +58,24 @@ cacheSolve <- function(x, ...) {
         #The input x is an object created by makeCacheMatrix
 
         inv_mat <- x$getinverse()
-        #accesses the object 'x' and gets the value of the inverse 
-             if(!is.null(inv_mat)) {
+                #accesses the object 'x' and gets the value of the inverse 
+                if(!is.null(inv_mat)) {
                      #if inverse was already cached (not NULL)
-                         message("getting cached matrix")
+                         
+                        message("getting cached matrix")
                          #send a message to console
-                         return(inv_mat)
+                         
+                        return(inv_mat)
                          #return the inverse matrix..."return" ends
                      }
-             data <- x$get() #this is in the case x$getinverse was 'NULL'
-                                #this function loads the new matrix to data
-             inv_mat <- solve(data, ...) #calculate the inverse matrix
-             x$setinverse(inv_mat)      #store the calculated mean value
-                                        #in x (see setinverse in makeCacheMatrix)        
-             inv_mat                    # return the inverse to the code that called
-                                        # this function
-
+                data <- x$get()                 #this is in the case x$getinverse was 'NULL'
+                                                #this function loads the new matrix to data
+                
+                inv_mat <- solve(data, ...)     #calculate the inverse matrix
+                
+                x$setinverse(inv_mat)           #store the calculated inverse matrix
+                                                #in x (see setinverse in makeCacheMatrix)        
+             
+                inv_mat                         # return the inverse to the code that called
+                                                # this function
 }
